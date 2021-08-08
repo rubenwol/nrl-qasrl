@@ -171,6 +171,11 @@ class QaSrlParserPredictor(Predictor):
 
                 results["verbs"].append({"verb": verb, "qa_pairs": qa_pairs, "index": index})
 
+        if "topic_id" in inputs.keys():
+            results["topic_id"] = inputs["topic_id"]
+        if "story_id" in inputs.keys():
+            results["story_id"] = inputs["story_id"]
+
         return results
 
     def make_question_text(self, slots, verb):
