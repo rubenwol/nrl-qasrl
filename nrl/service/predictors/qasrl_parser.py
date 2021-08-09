@@ -7,7 +7,6 @@ import torch
 import numpy
 
 from torch.nn.parameter import Parameter
-
 from allennlp.models import Model
 from allennlp.common.util import JsonDict
 from allennlp.data.tokenizers.word_splitter import SpacyWordSplitter
@@ -139,9 +138,9 @@ class QaSrlParserPredictor(Predictor):
 
         instances_with_spans = []
         instance_spans = []
-        if instances:
+        if instances and len(cleansed_words)>1:
             span_outputs = self._model.span_detector.forward_on_instances(instances)
-        
+
             for instance, span_output in zip(instances, span_outputs):
                 field_dict = instance.fields
                 text_field = field_dict['text']
