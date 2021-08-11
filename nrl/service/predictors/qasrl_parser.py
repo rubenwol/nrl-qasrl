@@ -138,7 +138,9 @@ class QaSrlParserPredictor(Predictor):
 
         instances_with_spans = []
         instance_spans = []
-        if instances and len(cleansed_words)>1:
+        # if len(cleansed_words) > 100:
+        #     print('topic id = '+ str(inputs['topic_id']) + ' story id: ' + str(inputs['story_id']))
+        if instances and len(cleansed_words)>1 and len(cleansed_words)<101:
             span_outputs = self._model.span_detector.forward_on_instances(instances)
 
             for instance, span_output in zip(instances, span_outputs):
